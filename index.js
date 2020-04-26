@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
    fetch("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json")
    .then( resp => resp.json())
    .then( jsonData => {
-     console.log(jsonData.data[0])
      // do all graph work here...
      const w = 750
      const h = 500
@@ -43,17 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
      let hoverDiv = d3.select("body").append("div")
                       .attr("id", "tooltip")
                       .style("opacity", 0)
-                      .style("background-color", "white")
-                      .style("border-radius", "5px")
-                      .style("border", "1px solid black")
-                      .style("height", "100px")
-                      .style("width", "200px")
-     
-     let overlay = d3.select("body").append("div")
-                     .attr("id", "overlay")
-                     .style("width", barWidth )
-                     .style("height", h )
-                     .style("opacity", 0)
      
      //add x axis scale
      svg.append("g")
@@ -80,16 +68,15 @@ document.addEventListener("DOMContentLoaded", () => {
         .on("mouseover", (d, i)  => {
           hoverDiv.transition()		
                   .duration(200)		
-                  .style("opacity", .9)
+                  .style("opacity", .8)
           hoverDiv.style("left", d3.event.pageX - 100 + "px")		
                   .style("top", h - 100 + "px")
                   .html("<p><strong> Date: " + yearDates[i].toLocaleDateString() +"</strong><p>GDP: $"+ jsonData.data[i][1] + " Billion" )
                  .attr("data-date", jsonData.data[i][0])
                  .attr("data-gdp", jsonData.data[i][1])
        })
-                 
        .on("mouseout", (d, i) => {
-         hoverDiv.transition()
+          hoverDiv.transition()
                  .duration(200)
                  .style("opacity", 0)
      })
