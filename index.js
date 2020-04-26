@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
    .then( jsonData => {
      console.log(jsonData.data[0])
      // do all graph work here...
-     const w = 1000
-     const h = 600
+     const w = 750
+     const h = 500
      const padding = 50 
      const barWidth = w / jsonData.data.length
      
